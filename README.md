@@ -38,6 +38,9 @@ Pick one in Settings:
 
 Optional: copy `.env.example` to `.env.local` to pre-fill the Settings panel.
 
+## Important :warning:
+Brain2Brief is designed around your ideas. It doesn't search the web for answers or generate generic content. The slides are built from your thoughts, perspectives, and notes. If you want to incorporate external information, you can explicitly provide a URL and Brain2Brief will fetch and use that content.
+
 ## How your key is handled
 
 - **Stored only in your browser's localStorage.** Never written to disk by this app, never sent anywhere except the LLM endpoint you configured.
