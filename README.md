@@ -1,9 +1,19 @@
-# Brain2Brief
+<p align="center">
+  <img src="public/favicon.svg" width="96" height="96" alt="Brain2Brief logo">
+</p>
 
-Brain-dump a topic → answer a few clarifying questions → get a 1–10 slide deck.
-For engineers who get pulled into "can you demo this real quick" with no time to design slides.
+<h1 align="center">Brain2Brief</h1>
 
-100% local. No backend. Bring your own LLM API key.
+<p align="center">
+  Brain-dump a topic → answer a few clarifying questions → get a 1–10 slide deck.<br/>
+  For engineers who get pulled into "can you demo this real quick" with no time to design slides.
+</p>
+
+<p align="center">
+  <strong>100% local. No backend. Bring your own LLM API key.</strong>
+</p>
+
+![Brain2Brief screenshot — chat on the left, generated deck preview on the right](public/screenshot.png)
 
 ## Quick start
 
