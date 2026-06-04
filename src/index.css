@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Brand */
+  --color-accent: #1e6fff;
+  --color-accent-hover: #1858d3;
+  --color-accent-fg: #ffffff;
+
+  /* Light surface tokens */
+  --color-bg: #ffffff;
+  --color-surface: #fafafa;
+  --color-surface-2: #f5f5f5;
+  --color-border: #e5e5e5;
+  --color-border-strong: #d4d4d4;
+  --color-ink: #0a0a0a;
+  --color-ink-2: #404040;
+  --color-muted: #737373;
+
+  /* Dark surface tokens — set via .dark on <html> */
+  --color-bg-dark: #0a0a0a;
+  --color-surface-dark: #141414;
+  --color-surface-2-dark: #1a1a1a;
+  --color-border-dark: #262626;
+  --color-border-strong-dark: #404040;
+  --color-ink-dark: #ededed;
+  --color-ink-2-dark: #a3a3a3;
+  --color-muted-dark: #737373;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.005em;
+}
+
+@media (prefers-color-scheme: dark) {
+  html, body {
+    background: var(--color-bg-dark);
+    color: var(--color-ink-dark);
+  }
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-accent-fg);
+}
+
+/* ------ Components ------ */
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-md bg-[var(--color-accent)] px-3.5 py-2 font-medium text-white hover:bg-[var(--color-accent-hover)] disabled:opacity-40 disabled:cursor-not-allowed transition-colors;
+    letter-spacing: -0.01em;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-md border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3.5 py-2 font-medium text-neutral-900 dark:text-neutral-100 hover:bg-neutral-50 dark:hover:bg-neutral-800 disabled:opacity-40 transition-colors;
+    letter-spacing: -0.01em;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-md px-2.5 py-1.5 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors;
+  }
+  .input {
+    @apply w-full rounded-md border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-2 text-sm outline-none transition-colors focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)] placeholder:text-neutral-400 dark:placeholder:text-neutral-500;
+  }
+  .surface {
+    @apply bg-neutral-50 dark:bg-[#0f0f0f];
+  }
+  .hairline {
+    @apply border-neutral-200 dark:border-neutral-800;
+  }
+  .badge {
+    @apply inline-flex items-center rounded-sm bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 px-1.5 py-0.5 text-[10px] uppercase tracking-wider font-medium;
+    font-family: var(--font-mono);
+  }
+}
+
+/* ------ Print: hide everything except the popup window ------ */
+@media print {
+  body.print-popup * { visibility: hidden; }
+  body.print-popup .print-root, body.print-popup .print-root * { visibility: visible; }
+  body.print-popup .print-root { position: absolute; inset: 0; }
+}

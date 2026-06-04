@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6A3DFF"/>
+      <stop offset="100%" stop-color="#2563FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="20" y="20" width="472" height="472" rx="60" fill="none" stroke="#E5E7EB" stroke-width="2"/>
+
+  <!-- Brain half -->
+  <path d="
+    M210 120
+    C170 120,145 145,145 180
+    C115 190,95 220,95 255
+    C95 290,115 320,145 330
+    C145 370,175 395,210 395
+    "
+    fill="none" stroke="url(#g)" stroke-width="18" stroke-linecap="round"/>
+
+  <path d="M145 180 C170 210,195 180,210 205" fill="none" stroke="url(#g)" stroke-width="18" stroke-linecap="round"/>
+  <path d="M125 255 C160 280,190 245,210 270" fill="none" stroke="url(#g)" stroke-width="18" stroke-linecap="round"/>
+  <path d="M145 330 C170 350,195 320,210 345" fill="none" stroke="url(#g)" stroke-width="18" stroke-linecap="round"/>
+
+  <!-- Divider -->
+  <line x1="256" y1="110" x2="256" y2="402" stroke="url(#g)" stroke-width="18" stroke-linecap="round"/>
+
+  <!-- Document half -->
+  <path d="M256 120 H355 L415 180 V355 C415 380 395 400 370 400 H270"
+        fill="none" stroke="url(#g)" stroke-width="18" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M355 120 V180 H415" fill="none" stroke="url(#g)" stroke-width="18" stroke-linejoin="round"/>
+
+  <line x1="300" y1="230" x2="380" y2="230" stroke="url(#g)" stroke-width="14" stroke-linecap="round"/>
+  <line x1="300" y1="280" x2="380" y2="280" stroke="url(#g)" stroke-width="14" stroke-linecap="round"/>
+  <line x1="300" y1="330" x2="350" y2="330" stroke="url(#g)" stroke-width="14" stroke-linecap="round"/>
+</svg>
