@@ -53,7 +53,7 @@ export type Theme = z.infer<typeof ThemeSchema>
 export const DeckSchema = z.object({
   title: z.string().min(1),
   theme: ThemeSchema.default('minimal'),
-  slides: z.array(SlideSchema).min(1).max(10),
+  slides: z.array(SlideSchema).min(1).max(12),
 })
 export type Deck = z.infer<typeof DeckSchema>
 

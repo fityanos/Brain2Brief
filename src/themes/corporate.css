@@ -3,6 +3,7 @@
   --slide-ink: #111827;
   --slide-muted: #4b5563;
   --slide-accent: #0f4c81;
+  --slide-accent-2: #1e6fff;
   --slide-rule: #d1d5db;
   --slide-band: #f3f4f6;
   --slide-font: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -16,13 +17,73 @@
   padding: 3rem 3.2rem 2.4rem;
   border-top: 6px solid var(--slide-accent);
 }
-.reveal[data-theme="corporate"] h1 { font-weight: 700; font-size: 2.5em; color: var(--slide-accent); margin-bottom: 0.2em; }
-.reveal[data-theme="corporate"] h2 { font-weight: 700; font-size: 1.6em; color: var(--slide-accent); margin-bottom: 0.7em; text-transform: uppercase; letter-spacing: 0.04em; }
+.reveal[data-theme="corporate"] h1 {
+  font-weight: 700;
+  font-size: 2.5em;
+  color: var(--slide-accent);
+  margin-bottom: 0.2em;
+}
+.reveal[data-theme="corporate"] h2 {
+  font-weight: 700;
+  font-size: 1.6em;
+  color: var(--slide-accent);
+  margin: 0 0 0.85em;
+  padding-bottom: 0.3em;
+  display: inline-block;
+  border-bottom: 3px solid var(--slide-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
 .reveal[data-theme="corporate"] .subtitle { color: var(--slide-muted); font-size: 1.05em; margin-top: 0.4em; }
-.reveal[data-theme="corporate"] ul { padding-left: 1.2em; margin: 0; }
-.reveal[data-theme="corporate"] ul li { padding: 0.3em 0; font-size: 0.95em; }
-.reveal[data-theme="corporate"] ul li::marker { color: var(--slide-accent); }
-.reveal[data-theme="corporate"] blockquote { background: var(--slide-band); border-left: 4px solid var(--slide-accent); padding: 1em 1.2em; font-size: 1.25em; color: var(--slide-ink); box-shadow: none; }
+
+/* Title slides — centered, no top stripe (looks cleaner for opener/Q&A) */
+.reveal[data-theme="corporate"] .slide-title {
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-top: none;
+}
+.reveal[data-theme="corporate"] .slide-title h1 {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+}
+.reveal[data-theme="corporate"] .slide-title h1::after {
+  content: "";
+  display: block;
+  width: 96px;
+  height: 4px;
+  margin: 0.45em auto 0;
+  background: var(--slide-accent);
+}
+.reveal[data-theme="corporate"] .slide-title .subtitle {
+  font-size: 1.2em;
+  max-width: 32em;
+}
+
+/* Bulleted content — point markers */
+.reveal[data-theme="corporate"] ul { list-style: none; padding: 0; margin: 0; }
+.reveal[data-theme="corporate"] ul li {
+  position: relative;
+  padding: 0.4em 0 0.4em 1.4em;
+  font-size: 0.98em;
+  line-height: 1.5;
+}
+.reveal[data-theme="corporate"] ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.85em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--slide-accent);
+  box-shadow: 0 0 0 3px rgba(15, 76, 129, 0.12);
+}
+
+.reveal[data-theme="corporate"] blockquote { background: var(--slide-band); border-left: 4px solid var(--slide-accent); padding: 1em 1.2em; font-size: 1.25em; color: var(--slide-ink); box-shadow: none; border-radius: 0 6px 6px 0; }
 .reveal[data-theme="corporate"] .attribution { color: var(--slide-muted); font-size: 0.9em; margin-top: 0.8em; }
 .reveal[data-theme="corporate"] pre { background: var(--slide-band); border: 1px solid var(--slide-rule); border-radius: 4px; box-shadow: none; font-family: var(--slide-mono); font-size: 0.7em; padding: 1em; }
 .reveal[data-theme="corporate"] .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }

@@ -12,7 +12,7 @@ export function renderSlideHtml(slide: Slide): string {
   const notes = slide.notes ? `<aside class="notes">${escapeHtml(slide.notes)}</aside>` : ''
   switch (slide.type) {
     case 'title':
-      return `<section>
+      return `<section class="slide-title">
         <h1>${escapeHtml(slide.title)}</h1>
         ${slide.subtitle ? `<p class="subtitle">${escapeHtml(slide.subtitle)}</p>` : ''}
         ${notes}

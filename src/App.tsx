@@ -24,6 +24,19 @@ import { callLlm, LlmError } from './lib/llm'
 import { buildGenerateTrigger, buildSystemPrompt } from './lib/prompts'
 import { DeckSchema, type Deck, type Slide, type Theme } from './lib/slideSchema'
 
+const QA_SLIDE_TITLE = 'Questions & discussion!'
+
+function withQaClosingSlide(deck: Deck): Deck {
+  const last = deck.slides[deck.slides.length - 1]
+  if (last && last.type === 'title' && /question/i.test(last.title)) {
+    return deck
+  }
+  return {
+    ...deck,
+    slides: [...deck.slides, { type: 'title', title: QA_SLIDE_TITLE }],
+  }
+}
+
 const STATE_KEY_PREFIX = 'slidekick.state.'
 const MAX_SLIDES = 10
 const SESSION_QUERY_PARAM = 'id'
@@ -219,7 +232,8 @@ export default function App() {
             dispatch({ type: 'error', error: 'Model did not provide a question or ready signal.' })
           }
         } else if (turn.kind === 'generate') {
-          const deck = DeckSchema.parse({ ...turn.deck, theme: state.theme })
+          const parsed = DeckSchema.parse({ ...turn.deck, theme: state.theme })
+          const deck = withQaClosingSlide(parsed)
           dispatch({ type: 'gotDeck', deck, raw })
         }
       } catch (err) {

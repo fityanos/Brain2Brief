@@ -37,6 +37,19 @@ export function PresentationView({ deck, theme, onClose }: Props) {
     }
     window.addEventListener('keydown', onKey)
 
+    // Browsers swallow the Esc keydown when it exits fullscreen, so also
+    // close once the document leaves fullscreen (after we entered it).
+    let enteredFullscreen = false
+    let closingFromUnmount = false
+    const onFsChange = () => {
+      if (document.fullscreenElement) {
+        enteredFullscreen = true
+      } else if (enteredFullscreen && !closingFromUnmount) {
+        onClose()
+      }
+    }
+    document.addEventListener('fullscreenchange', onFsChange)
+
     // Try entering browser fullscreen automatically for the immersive feel.
     // Will silently no-op if the browser blocks it without a user gesture.
     const requestFs = () => {
@@ -48,7 +61,9 @@ export function PresentationView({ deck, theme, onClose }: Props) {
     requestFs()
 
     return () => {
+      closingFromUnmount = true
       window.removeEventListener('keydown', onKey)
+      document.removeEventListener('fullscreenchange', onFsChange)
       try {
         r.destroy()
       } catch {
