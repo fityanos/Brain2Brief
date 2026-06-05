@@ -26,6 +26,29 @@ import { DeckSchema, type Deck, type Slide, type Theme } from './lib/slideSchema
 
 const STATE_KEY_PREFIX = 'slidekick.state.'
 const MAX_SLIDES = 10
+const SESSION_QUERY_PARAM = 'id'
+
+function getSessionIdFromUrl(): string | null {
+  try {
+    return new URLSearchParams(window.location.search).get(SESSION_QUERY_PARAM)
+  } catch {
+    return null
+  }
+}
+
+function setSessionIdInUrl(id: string | null): void {
+  try {
+    const url = new URL(window.location.href)
+    if (id) {
+      url.searchParams.set(SESSION_QUERY_PARAM, id)
+    } else {
+      url.searchParams.delete(SESSION_QUERY_PARAM)
+    }
+    window.history.pushState({}, '', url)
+  } catch {
+    // ignore
+  }
+}
 
 function loadChatState(sessionId: string): ChatState | null {
   try {
@@ -59,7 +82,11 @@ interface EditorState {
 export default function App() {
   const [settings, setSettings] = useState<Settings>(() => loadSettings())
   const [sessions, setSessions] = useState<SessionRecord[]>(() => loadSessions())
-  const [activeId, setActiveId] = useState<string>(() => sessions[0]?.id ?? newSessionId())
+  const [activeId, setActiveId] = useState<string>(() => {
+    const urlId = getSessionIdFromUrl()
+    if (urlId && sessions.some((s) => s.id === urlId)) return urlId
+    return newSessionId()
+  })
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [showDeck, setShowDeck] = useState(false)
   const [presenting, setPresenting] = useState(false)
@@ -99,6 +126,7 @@ export default function App() {
       setActiveId(id)
       setShowDeck(Boolean(loaded.deck))
       dispatch({ type: 'load', state: loaded })
+      setSessionIdInUrl(id)
     },
     [settings.defaultTheme],
   )
@@ -108,6 +136,7 @@ export default function App() {
     setActiveId(id)
     setShowDeck(false)
     dispatch({ type: 'reset', sessionId: id, theme: settings.defaultTheme })
+    setSessionIdInUrl(null)
   }, [settings.defaultTheme])
 
   const handleDelete = useCallback(
