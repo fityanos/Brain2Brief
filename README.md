@@ -72,37 +72,8 @@ npm run preview
 
 ## How it works
 
-1. **Brain-dump** — your topic, in any form (bullets, half-sentences, raw thoughts).
-2. **Clarify** — the model asks up to 5 focused questions (audience, goal, key takeaway, etc.) and self-signals when it has enough.
-3. **Generate** — click the button inside the "ready" message. The model returns a structured deck (zod-validated, retried once on bad JSON).
-4. **Edit** — add / delete / modify slides locally in the deck panel. No API calls.
-5. **Export** — Print/PDF (popup window with stacked slides), JSON export, or full-screen **Present** mode (Reveal.js).
+![How it works](public/how.png)
 
-Past decks are listed in the left sidebar (localStorage, refresh-safe).
-
-## Scripts
-
-```bash
-npm run dev        # Vite dev server (no CSP)
-npm run build      # Production build (CSP injected)
-npm run preview    # Serve the production build locally
-npm test           # Vitest unit tests
-npm run e2e        # Playwright end-to-end (mocked LLM, no key needed)
-```
-
-## Project layout
-
-```
-src/
-  components/   Sidebar, Chat, Composer, DeckViewer, SlideEditor, SlideStrip,
-                PresentationView, SettingsModal, BrainLogo, Icons
-  lib/          slideSchema (zod), prompts, llm (Anthropic + OpenAI-compat + Mock),
-                state (reducer), storage
-  themes/       minimal.css, dark.css, corporate.css
-  test/         vitest unit tests
-e2e/            Playwright + mocked LLM
-public/         favicon.svg
-```
 
 ## License
 
